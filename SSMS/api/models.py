@@ -22,7 +22,8 @@ class Custom_User(AbstractUser):
 class Subject(models.Model):
     subname = models.CharField(max_length=100)
     teacher = models.ForeignKey('Custom_User', on_delete=models.CASCADE, null=True, limit_choices_to={'role': 'teacher'})
-
+    class Meta:
+        unique_together = ('subname', 'teacher')
     def __str__(self):
         return self.subname
 
